@@ -650,6 +650,10 @@ def _rosnode_cmd_kill(argv):
 
     @raise ROSNodeException: if user enters in unrecognized nodes
     """
+    hostName = socket.gethostname()
+    if hostName!="ros":
+        print("Unauthenticed operation")
+        return 1
     args = argv[2:]
     parser = OptionParser(usage="usage: %prog kill [node]...", prog=NAME)
     parser.add_option("-a","--all",
